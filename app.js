@@ -41,6 +41,46 @@ function setupPhotoPreview() {
     setMsg("");
   });
 }
-setupPhotoPreview();
+function setupAddButton() {
+  const btn = document.getElementById("addLandmark");
 
+  btn.addEventListener("click", () => {
+    setMsg("");
+
+    const title = document.getElementById("title").value.trim();
+    const description = document.getElementById("description").value.trim();
+    const file = document.getElementById("photo").files[0];
+
+    if (!title) return setMsg("Title is required.");
+    if (!description) return setMsg("Description is required.");
+    if (!file) return setMsg("Please upload a photo.");
+
+    const imageUrl = URL.createObjectURL(file);
+
+    const landmark = {
+      id: Date.now(),
+      title,
+      description,
+      imageUrl
+
+    };
+
+    landmarks.push(landmark);
+
+    console.log("Saved landmark:", landmark);
+    setMsg("Landmark saved (no marker yet).");
+
+
+    document.getElementById("title").value = "";
+    document.getElementById("description").value = "";
+    document.getElementById("photo").value = "";
+    const preview = document.getElementById("photoPreview");
+    preview.style.display = "none";
+    preview.src = "";
+  });
+}
+
+setupAddButton();
+setupPhotoPreview();
 initMap();
+
