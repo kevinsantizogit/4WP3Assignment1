@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Walking Tour Builder</title>
+  <title>4WP3 Assignment 1 - Walking Tour Builder</title>
   <link rel="stylesheet" href="style.css">
   <link
   rel="stylesheet"
@@ -15,7 +15,8 @@
 <body>
   <header class="header">
     <h1>Walking Tour Builder</h1>
-    <p>Create a walking tour by adding landmarks with a photo, description, and map location.</p>
+    <p>Create a walking tour by adding landmarks with a photo, description, and map location</p>
+	<p>These landmarks can then be modified (listed,deleted,focused)</p>
 	<p>Made by Kevin Santizo</p>
   </header>
 
@@ -58,12 +59,12 @@
           <div id="manualCoords" class="coords hidden">
             <label>
               Latitude
-              <input id="lat" type="number" step="any" placeholder="43.2609" />
+              <input id="lat" type="number" step="any" placeholder="43.0000" />
             </label>
 
             <label>
               Longitude
-              <input id="lng" type="number" step="any" placeholder="-79.9192" />
+              <input id="lng" type="number" step="any" placeholder="-79.0000" />
             </label>
           </div>
         </fieldset>
@@ -73,7 +74,7 @@
         <button id="addLandmark">Add Landmark</button>
       </div>
 
-      <h2>Landmarks</h2>
+      <h2>Saved Landmarks</h2>
       <div id="list" class="list"></div>
     </aside>
   </main>

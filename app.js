@@ -226,7 +226,11 @@ function deleteLandmark(id) {
 
   const lm = landmarks[idx];
   if (lm.marker) map.removeLayer(lm.marker);
+  if (lm.imageUrl) URL.revokeObjectURL(lm.imageUrl);
 
+  landmarks.splice(idx, 1);
+  renderList();
+  setMsg("Landmark deleted.");
 }
 
 function highlightInList(id) {
