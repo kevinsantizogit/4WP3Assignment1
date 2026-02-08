@@ -1,4 +1,9 @@
 let map;
+const landmarks = [];
+
+function setMsg(text) {
+	document.getElementById("msg").textContent = text;
+}
 
 function initMap() {
   const defaultCenter = [43.2557, -79.8711];
