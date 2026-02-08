@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Walking Tour Builder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Walking Tour Builder</h1>
+    <p>Create a walking tour by adding landmarks with a photo, description, and map location.</p>
+	<p>Made by Kevin Santizo</p>
+  </header>
+
+  <main class="layout">
+    <section id="map" class="map"></section>
+
+    <aside class="sidebar">
+      <h2>Add a Landmark</h2>
+      <div class="card">
+        <label>
+          Title
+          <input id="title" type="text" maxlength="60" />
+        </label>
+
+        <label>
+          Description (1-3 sentences)
+          <textarea id="description" rows="3" maxlength="240"></textarea>
+        </label>
+
+        <label>
+          Photo
+          <input id="photo" type="file" accept="image/*" />
+        </label>
+
+        <img id="photoPreview" class="preview" alt="Photo preview" />
+
+        <fieldset class="card subtle">
+          <legend>Location</legend>
+
+          <label class="inline">
+            <input type="radio" name="locMode" value="geo" checked />
+            Use my current location
+          </label>
+
+          <label class="inline">
+            <input type="radio" name="locMode" value="manual" />
+            Enter coordinates
+          </label>
+
+          <div id="manualCoords" class="coords hidden">
+            <label>
+              Latitude
+              <input id="lat" type="number" step="any" placeholder="43.2609" />
+            </label>
+
+            <label>
+              Longitude
+              <input id="lng" type="number" step="any" placeholder="-79.9192" />
+            </label>
+          </div>
+        </fieldset>
+
+        <div id="msg" class="msg"></div>
+
+        <button id="addLandmark">Add Landmark</button>
+      </div>
+
+      <h2>Landmarks</h2>
+      <div id="list" class="list"></div>
+    </aside>
+  </main>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLvG1phKT5oBO5rQ8Y_dEXK6oeP_uOZiM&callback=initMap&libraries=marker" defer></script>
+  <script src="app.js"></script>
+</body>
+</html>
