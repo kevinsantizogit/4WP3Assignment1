@@ -1,10 +1,13 @@
 let map;
 
-window.initMap = function initMap() {
-  const defaultCenter = { lat: 43.2557, lng: -79.8711 };
+function initMap() {
+  const defaultCenter = [43.2557, -79.8711];
 
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: defaultCenter,
-    zoom: 13,
-  });
-};
+  map = L.map("map").setView(defaultCenter, 13);
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "© OpenStreetMap contributors",
+  }).addTo(map);
+}
+
+initMap();
