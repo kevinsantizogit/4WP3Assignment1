@@ -40,6 +40,15 @@
   margin-top: 8px;
 }
 
+.preview {
+  width: 100%;
+  max-width: 320px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
 .thumb {
   width: 80%;
   max-height: 200px;
@@ -53,3 +62,6 @@
   object-fit: contain;
   border-radius: 8px;
 }
+
+
+
