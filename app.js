@@ -80,7 +80,71 @@ function setupAddButton() {
   });
 }
 
+function setupLocationModeToggle() {
+  const manualBox = document.getElementById("manualCoords");
+
+  document.querySelectorAll('input[name="locMode"]').forEach((r) => {
+    r.addEventListener("change", () => {
+      const mode = getLocMode();
+      manualBox.classList.toggle("hidden", mode !== "manual");
+      setMsg("");
+    });
+  });
+}
+
+function getLocMode() {
+  return document.querySelector('input[name="locMode"]:checked')?.value || "geo";
+}
+
+function getCoordsFromUserChoice()
+{
+  const mode = getLocMode();
+  
+  if (mode == "manual")
+  {
+    const lat = parseFloat(document.getElementById("lat").value);
+    const lng = parseFloat(document.getElementById("lng").value);
+    
+    if (isNaN(lat) || isNaN(lng))
+    {
+      alert("Please enter valid latitude and longitude");
+      return null;
+    }
+    
+    if (lat < -90 || lat > 90)
+    {
+      alert("Latitude must be between -90 and 90");
+      return null;
+    }
+    
+    if (lng < -180 || lng > 180)
+    {
+      alert("Longitude must be between -180 and 180");
+      return null;
+    }
+    
+    return {lat: lat, lng: lng};
+  }
+  else
+  {
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+        const coords = {
+          lat: position.coords.latitude, 
+          lng: position.coords.longitude
+        };
+        saveLandmark(title, description, photoFile, coords.lat, coords.lng);
+      },
+      function(error) {
+        alert("Could not get your location. Please use manual coordinates");
+      }
+    );
+  }
+}
+
 setupAddButton();
 setupPhotoPreview();
+setupLocationModeToggle();
 initMap();
+
 
