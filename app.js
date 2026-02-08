@@ -15,4 +15,32 @@ function initMap() {
   }).addTo(map);
 }
 
+function setupPhotoPreview() {
+  const photoInput = document.getElementById("photo");
+  const preview = document.getElementById("photoPreview");
+
+  photoInput.addEventListener("change", () => {
+    const file = photoInput.files[0];
+
+    if (!file) {
+      preview.style.display = "none";
+      preview.src = "";
+      return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+      setMsg("Please choose an image file.");
+      photoInput.value = "";
+      preview.style.display = "none";
+      preview.src = "";
+      return;
+    }
+
+    preview.src = URL.createObjectURL(file);
+    preview.style.display = "block";
+    setMsg("");
+  });
+}
+setupPhotoPreview();
+
 initMap();
