@@ -1,0 +1,12 @@
+This assignment was a great way of getting me back into the flow HTML and Javascript programming. 
+At Humber College while completing my 3 year advanced diploma in Computer Engineering. 
+We took a course in Unix Development and the Internet. The professor made all of the assignments based on web programming that was locally hosted but some assignments were done over SSH. 
+There was a bit of a gap since the last time I did some web development and given that I ran into some familiar problems which reminded me that I was a bit rusty when it came to hands on coding Javascript and HTML programming.
+After referencing and reviewing the lecture recordings and notes I got back into the flow of things. In my 4th commit or commit 0ea38a3, I ran into an error where I was trying to implement the Google Maps API.
+I was having trouble enabling the API and having the interative map show properly on my locally hosted page. I checked my Google account, and it said a prepayment was needed so I went through the prepayment process.
+After completeing it I was still getting an error and it appears to be a bug on their side or my credit card. Whenever I submitted the billing information (which is just used to verify and for security purposes as stated in the lecture slides)
+I was still getting the popup and it was acting as if I didn't enter any billing information. I tried using another Google account as well but I was still receiving the error. 
+So I decided to use OpenStreetMap with leaflet instead, this map was much easier to implement as its open source and no API keys are needed. I finished setting that up and now it is working flawlessly.
+In my 12th (3d3e4bc) and 13th (50dd185), I was running into an issue where the image previews and landmark images in my llst were showing up as too large. 
+I added proper ratios/limitations to my style.css to the objects and I was able to fix but it was an issue and could've gone easily unnoticed as on my computer it seems just a bit large (the pictures).
+Overall, this assignment was very informative and I had a great time rediscovering my passion for web development. I am looking forward to the rest of the course.
