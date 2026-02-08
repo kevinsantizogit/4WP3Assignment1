@@ -6,7 +6,7 @@ function setMsg(text) {
 }
 
 function initMap() {
-  const defaultCenter = [43.2557, -79.8711];
+  const defaultCenter = [43.6426, -79.3871];
 
   map = L.map("map").setView(defaultCenter, 13);
 
@@ -46,6 +46,8 @@ function addLandmarkToMap(landmark) {
   const marker = L.marker([landmark.lat, landmark.lng]).addTo(map);
 
   marker.on("click", () => {
+    highlightInList(landmark.id);
+
     marker
       .bindPopup(`
         <strong>${escapeHtml(landmark.title)}</strong><br>
@@ -110,6 +112,7 @@ function setupAddButton() {
 
     addLandmarkToMap(landmark);
     landmarks.push(landmark);
+    renderList();
 
     setMsg("Landmark added to map.");
 
@@ -162,6 +165,73 @@ function getCoordsFromUserChoice() {
       () => reject(new Error("Geolocation denied or unavailable.")),
       { enableHighAccuracy: true, timeout: 8000 }
     );
+  });
+}
+
+function renderList() {
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+
+  for (const lm of landmarks) {
+    const item = document.createElement("div");
+    item.className = "item";
+    item.dataset.id = lm.id;
+
+    item.innerHTML = `
+      <strong>${escapeHtml(lm.title)}</strong>
+      <div>${escapeHtml(lm.description)}</div>
+      <img class="thumb" src="${lm.imageUrl}" alt="thumbnail">
+      <div class="row">
+        <button type="button" data-action="focus">Focus</button>
+        <button type="button" data-action="toggle">${lm.hidden ? "Show" : "Hide"}</button>
+        <button type="button" data-action="delete">Delete</button>
+      </div>
+    `;
+
+    item.addEventListener("click", (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
+
+      const action = btn.dataset.action;
+
+      if (action === "focus") {
+        map.setView([lm.lat, lm.lng], 16);
+        lm.marker.openPopup();
+        highlightInList(lm.id);
+      }
+
+      if (action === "toggle") {
+        lm.hidden = !lm.hidden;
+        if (lm.hidden) {
+          map.removeLayer(lm.marker);
+        } else {
+          lm.marker.addTo(map);
+        }
+        renderList();
+        highlightInList(lm.id);
+      }
+
+      if (action === "delete") {
+        deleteLandmark(lm.id);
+      }
+    });
+
+    list.appendChild(item);
+  }
+}
+
+function deleteLandmark(id) {
+  const idx = landmarks.findIndex(x => x.id === id);
+  if (idx === -1) return;
+
+  const lm = landmarks[idx];
+  if (lm.marker) map.removeLayer(lm.marker);
+
+}
+
+function highlightInList(id) {
+  document.querySelectorAll(".item").forEach(el => {
+    el.classList.toggle("active", Number(el.dataset.id) === id);
   });
 }
 

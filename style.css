@@ -2,3 +2,40 @@
   height: 500px;
   width: 100%;
 }
+.landmark-item {
+  background-color: white;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.landmark-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-color: #bbb;
+}
+
+.landmark-item.active {
+  border: 3px solid #000;
+}
+
+.landmark-item h3 {
+  color: #2c3e50;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.landmark-item p {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.landmark-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-top: 8px;
+}
