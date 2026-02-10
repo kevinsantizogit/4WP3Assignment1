@@ -45,18 +45,19 @@ function setupPhotoPreview() {
 function addLandmarkToMap(landmark) {
   const marker = L.marker([landmark.lat, landmark.lng]).addTo(map);
 
+  const popupHtml = `
+    <strong>${escapeHtml(landmark.title)}</strong><br>
+    ${escapeHtml(landmark.description)}<br>
+    <img src="${landmark.imageUrl}" style="width:100%;margin-top:6px;border-radius:8px;">
+  `;
+
+  marker.bindPopup(popupHtml);
+
   marker.on("click", () => {
     highlightInList(landmark.id);
-
-    marker
-      .bindPopup(`
-        <strong>${escapeHtml(landmark.title)}</strong><br>
-        ${escapeHtml(landmark.description)}<br>
-        <img src="${landmark.imageUrl}" style="width:100%;margin-top:6px;border-radius:8px;">
-      `)
-      .openPopup();
+    marker.openPopup();
   });
-
+  
   landmark.marker = marker;
 }
 
